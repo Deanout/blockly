@@ -1,0 +1,33 @@
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+<div class="container text-center">
+  <h1>Blockly</h1>
+  <p>Learning to code doesn't have to be an intro to C class.</p>
+  <p>Blockly is a visual programming language that makes it easy to learn to code.</p>
+</div>
+<%= content_tag(:div, "", id:"blockly_container", data: {
+    controller: "blockly",
+}) do %>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <%= link_to "Run Code", "#", data: {
+                action: "click->blockly#runCode",
+                blockly_target: "runCode"
+            }, class: "btn btn-primary btn-lg" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <%= content_tag(:div, "", id: "blockly", style: "width:auto; height: 480px", data: {
+                blockly_target: "container"
+            }) %>
+      </div>
+      <div class="col-6">
+        <pre style="width:auto; height: 100%; background-color: #aaa; padding: 1em"><%= content_tag(:code, "", data: {
+            blockly_target: "code_output",
+        }, class: "language-javascript") %></pre>
+      </div>
+    </div>
+  </div>
+<% end %>
